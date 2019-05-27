@@ -6,8 +6,7 @@ pipeline {
                 sh 'npm --version'
             }
         }
-    }
-    stage('SonarQube analysis') { 
+        stage('SonarQube analysis') { 
         withSonarQubeEnv('Sonar') { 
           sh 'sonar-scanner ' + 
           '-Dsonar.projectKey=DaveChintan_devops ' +
@@ -25,4 +24,6 @@ pipeline {
            }
         }
     }
+    }
+    
 }
