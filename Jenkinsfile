@@ -23,6 +23,7 @@ pipeline {
             agent any
             steps {
                 timeout(time: 1, unit: 'HOURS') 
+                script
                 { 
                    def qg = waitForQualityGate() 
                    if (qg.status != 'OK') 
