@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        JAVA_HOME='/usr/lib/jvm/java-1.8-openjdk/bin/java'
-    }
     stages {
         stage('build') {
             steps {
@@ -19,20 +16,6 @@ pipeline {
                     '-Dsonar.sources=. '+
                     '-Dsonar.host.url=https://sonarcloud.io ' +
                     '-Dsonar.login=70cf6958a6eef1f896e59fe63679b920c64fb087'
-                }
-            }
-        }
-        stage("SonarQube Quality Gate") { 
-            agent any
-            steps {
-                timeout(time: 1, unit: 'HOURS') 
-                script
-                { 
-                   def qg = waitForQualityGate() 
-                   if (qg.status != 'OK') 
-                   {
-                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                   }
                 }
             }
         }
