@@ -4,8 +4,8 @@ pipeline {
         stage('build') {
         
             steps {
-                scripts {
-                   sonarHome = tool 'SonarQube Scanner 3.3.0.1492'
+                script {
+                   def sonarHome = tool 'SonarQube Scanner 3.3.0.1492'
                 }
                 sh (sonarHome)
             }
