@@ -7,23 +7,29 @@ pipeline {
             }
         }
         stage('SonarQube analysis') { 
-            withSonarQubeEnv('Sonar') { 
-              sh 'sonar-scanner ' + 
-              '-Dsonar.projectKey=DaveChintan_devops ' +
-              '-Dsonar.organization=davechintan-github ' +
-              '-Dsonar.sources=. '+
-              '-Dsonar.host.url=https://sonarcloud.io ' +
-              '-Dsonar.login=02cce3c936c815a6ab5cf6b2f1153b68ea214a9d'
+            agent any
+            steps {
+                withSonarQubeEnv('Sonar') { 
+                    sh 'sonar-scanner ' + 
+                    '-Dsonar.projectKey=DaveChintan_devops ' +
+                    '-Dsonar.organization=davechintan-github ' +
+                    '-Dsonar.sources=. '+
+                    '-Dsonar.host.url=https://sonarcloud.io ' +
+                    '-Dsonar.login=02cce3c936c815a6ab5cf6b2f1153b68ea214a9d'
+                }
             }
         }
         stage("SonarQube Quality Gate") { 
-            timeout(time: 1, unit: 'HOURS') 
-            { 
-               def qg = waitForQualityGate() 
-               if (qg.status != 'OK') 
-               {
-                 error "Pipeline aborted due to quality gate failure: ${qg.status}"
-               }
+            agent any
+            steps {
+                timeout(time: 1, unit: 'HOURS') 
+                { 
+                   def qg = waitForQualityGate() 
+                   if (qg.status != 'OK') 
+                   {
+                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                   }
+                }
             }
         }
     }
