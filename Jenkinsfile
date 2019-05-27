@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'npm --version'
-                sh 'ls /home/chintan'
+                sh ('printenv | sort')
             }
         }
     }
