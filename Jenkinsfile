@@ -10,7 +10,7 @@ pipeline {
             agent any
             steps {
                 withSonarQubeEnv('Sonar') { 
-                    sh '/home/Public/sonar/bin/sonar-scanner ' + 
+                    sh '/home/chintan/Public/sonar/bin/sonar-scanner ' + 
                     '-Dsonar.projectKey=DaveChintan_devops ' +
                     '-Dsonar.organization=davechintan-github ' +
                     '-Dsonar.sources=. '+
