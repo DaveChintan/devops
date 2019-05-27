@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'npm --version'
-                sh ('printenv | sort')
+                sh '/home/chintan/Public/sonar/bin/sonar-scanner'
             }
         }
     }
