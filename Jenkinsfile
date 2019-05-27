@@ -19,5 +19,11 @@ pipeline {
                 }
             }
         }
+        stage("SonarQube Quality Gate") { 
+            agent any
+            steps {
+                sh 'hello'
+            }
+        }
     }
 }
