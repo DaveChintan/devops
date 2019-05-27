@@ -5,7 +5,7 @@ pipeline {
         
             steps {
                 script {
-                   def sonarHome = tool 'SonarQube Scanner 3.3.0.1492'
+                   def sonarHome = tool 'SonarQube Scanner 3'
                 }
                 sh (sonarHome)
             }
