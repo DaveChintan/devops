@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        java_cmd='/usr/lib/jvm/java-1.8-openjdk/bin/java'
+    }
     stages {
         stage('build') {
             steps {
